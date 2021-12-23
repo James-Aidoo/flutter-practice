@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_cubit_app/components/circle_tab_indicator.dart';
 import 'package:flutter_cubit_app/misc/colors.dart';
