@@ -19,19 +19,12 @@ class _HomePageState extends State<HomePage>
     Tab(text: "Emotions")
   ];
 
-  static const activityImages = [
-    'kayaking.png',
-    'snorkling.png',
-    'balloning.png',
-    'hiking.png',
-  ];
-
-  static const _activityNames = [
-    'Kayaking',
-    'Snorkling',
-    'Ballooning',
-    'Hiking'
-  ];
+  static const _activities = {
+    'kayaking.png': 'Kayaking',
+    'snorkling.png': 'Snorkling',
+    'balloning.png': 'Ballooning',
+    'hiking.png': 'Hiking',
+  };
 
   late TabController _tabController;
 
@@ -137,7 +130,7 @@ class _HomePageState extends State<HomePage>
                 height: 100,
                 width: double.maxFinite,
                 child: ListView.builder(
-                  itemCount: activityImages.length,
+                  itemCount: _activities.length,
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (context, index) {
                     return Container(
@@ -153,13 +146,13 @@ class _HomePageState extends State<HomePage>
                               borderRadius: BorderRadius.circular(12),
                               image: DecorationImage(
                                 image: AssetImage(
-                                    'images/${activityImages[index]}'),
+                                    'images/${_activities.keys.elementAt(index)}'),
                                 fit: BoxFit.cover,
                               ),
                             ),
                           ),
                           AppTextNormal(
-                            text: _activityNames[index],
+                            text: _activities.values.elementAt(index),
                             size: 14,
                           ),
                         ],
