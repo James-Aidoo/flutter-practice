@@ -3,7 +3,7 @@ import 'package:flutter_cubit_app/page/navpages/bar_item_page.dart';
 import 'package:flutter_cubit_app/page/navpages/my_page.dart';
 import 'package:flutter_cubit_app/page/navpages/search_page.dart';
 
-import 'home_page.dart';
+import '../home_page.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
