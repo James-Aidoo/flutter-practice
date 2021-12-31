@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_cubit_app/components/circle_tab_indicator.dart';
 import 'package:flutter_cubit_app/misc/colors.dart';
-import 'package:flutter_cubit_app/widget/app_text_large.dart';
-import 'package:flutter_cubit_app/widget/app_text_normal.dart';
+import 'package:flutter_cubit_app/presentation/components/circle_tab_indicator.dart';
+import 'package:flutter_cubit_app/presentation/widget/app_text_large.dart';
+import 'package:flutter_cubit_app/presentation/widget/app_text_normal.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);

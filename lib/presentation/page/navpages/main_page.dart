@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_cubit_app/page/navpages/bar_item_page.dart';
-import 'package:flutter_cubit_app/page/navpages/my_page.dart';
-import 'package:flutter_cubit_app/page/navpages/search_page.dart';
+import 'package:flutter_cubit_app/presentation/page/navpages/bar_item_page.dart';
+import 'package:flutter_cubit_app/presentation/page/navpages/my_page.dart';
+import 'package:flutter_cubit_app/presentation/page/navpages/search_page.dart';
 
 import '../home_page.dart';
 

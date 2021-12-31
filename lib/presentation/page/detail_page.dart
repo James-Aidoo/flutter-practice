@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_cubit_app/misc/colors.dart';
-import 'package:flutter_cubit_app/widget/app_button.dart';
-import 'package:flutter_cubit_app/widget/app_text_large.dart';
-import 'package:flutter_cubit_app/widget/app_text_normal.dart';
-import 'package:flutter_cubit_app/widget/responsive_button.dart';
+import 'package:flutter_cubit_app/presentation/widget/app_button.dart';
+import 'package:flutter_cubit_app/presentation/widget/app_text_large.dart';
+import 'package:flutter_cubit_app/presentation/widget/app_text_normal.dart';
+import 'package:flutter_cubit_app/presentation/widget/responsive_button.dart';
 
 class DetailPage extends StatefulWidget {
   const DetailPage({Key? key}) : super(key: key);
