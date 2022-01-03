@@ -1,13 +1,15 @@
 import 'package:dio/dio.dart';
 
 class RemoteDataClient {
+  static const baseUrl = 'http://mark.bslmeiyu.com/api/';
+
   ///
   /// Add global headers here
   ///
   static const _headers = {'': ''};
 
   static BaseOptions get _options => BaseOptions(
-        baseUrl: 'https://5d42a6e2bc64f90014a56ca0.mockapi.io/api/v1/',
+        baseUrl: baseUrl,
         connectTimeout: 30000,
         followRedirects: true,
         headers: _headers,
