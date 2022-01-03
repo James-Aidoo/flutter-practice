@@ -15,9 +15,9 @@ class RemoteDataClient {
         headers: _headers,
       );
 
-  final _dio = Dio(_options);
+  static final _dio = Dio(_options);
 
-  Dio get dio {
+  static Dio get dio {
     _dio.interceptors
         .add(LogInterceptor(requestBody: true, responseBody: true));
     return _dio;
