@@ -6,7 +6,7 @@ class RemoteDataClient {
   ///
   /// Add global headers here
   ///
-  static const _headers = {'': ''};
+  static const _headers = <String, dynamic>{};
 
   static BaseOptions get _options => BaseOptions(
         baseUrl: baseUrl,
