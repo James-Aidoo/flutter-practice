@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_cubit_app/injection_container.dart';
 import 'package:flutter_cubit_app/presentation/page/detail_page.dart';
 
 void main() {
+  // Call DI init function to register components
+  registerCompononents();
+  // run app
   runApp(const MyApp());
 }
 

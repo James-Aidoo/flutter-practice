@@ -22,7 +22,7 @@ class DataRepositoryImpl extends DataRepository {
     dynamic Function(Type)? transform,
   }) async {
     param ??= NoParams() as Param;
-    transform ??= (t) => t;
+    transform ??= (type) => type;
     try {
       return Right(transform(await call(param as Param)));
     } catch (e) {
