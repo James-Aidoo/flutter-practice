@@ -9,12 +9,12 @@ part 'places_state.dart';
 part 'places_bloc.freezed.dart';
 
 class PlacesBloc extends Bloc<PlacesEvent, PlacesState> {
-  final GetPlacesUseCase getPlacesUseCase;
+  final GetPlacesUseCase _getPlacesUseCase;
 
-  PlacesBloc({required this.getPlacesUseCase}) : super(const _Initial()) {
+  PlacesBloc(this._getPlacesUseCase) : super(const _Initial()) {
     on<GetPlacesEvent>((event, emit) async {
       emit(const Loading());
-      final result = await getPlacesUseCase(NoParams());
+      final result = await _getPlacesUseCase(NoParams());
       result.fold((l) => emit(const Error('')), (r) => emit(Loaded(r)));
     });
   }
