@@ -14,6 +14,7 @@ final getIt = GetIt.I;
 
 void registerCompononents() {
   //! State Management (Bloc)
+  // Note: ```getIt()``` is short for ```getIt.call()```
   getIt.registerFactory(() => PlacesBloc(getPlacesUseCase: getIt()));
 
   //! Usecase
