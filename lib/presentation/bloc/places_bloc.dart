@@ -13,9 +13,10 @@ class PlacesBloc extends Bloc<PlacesEvent, PlacesState> {
 
   PlacesBloc(this._getPlacesUseCase) : super(const _Initial()) {
     on<GetPlacesEvent>((event, emit) async {
-      emit(const Loading());
+      emit(const PlacesState.loading());
       final result = await _getPlacesUseCase(NoParams());
-      result.fold((l) => emit(const Error('')), (r) => emit(Loaded(r)));
+      result.fold((l) => emit(PlacesState.error(l.message)),
+          (r) => emit(PlacesState.loaded(r)));
     });
   }
 }
