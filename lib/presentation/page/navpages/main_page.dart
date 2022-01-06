@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_cubit_app/domain/model/place.dart';
 import 'package:flutter_cubit_app/presentation/page/navpages/bar_item_page.dart';
 import 'package:flutter_cubit_app/presentation/page/navpages/my_page.dart';
 import 'package:flutter_cubit_app/presentation/page/navpages/search_page.dart';
@@ -6,19 +7,26 @@ import 'package:flutter_cubit_app/presentation/page/navpages/search_page.dart';
 import '../home_page.dart';
 
 class MainPage extends StatefulWidget {
-  const MainPage({Key? key}) : super(key: key);
+  final List<Place> places;
+
+  const MainPage({Key? key, required this.places}) : super(key: key);
 
   @override
   _MainPageState createState() => _MainPageState();
 }
 
 class _MainPageState extends State<MainPage> {
-  static const pages = [HomePage(), BarItemPage(), SearchPage(), MyPage()];
-
   int currentNavIndex = 0;
 
   @override
   Widget build(BuildContext context) {
+    final pages = [
+      HomePage(places: widget.places),
+      const BarItemPage(),
+      const SearchPage(),
+      const MyPage()
+    ];
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: pages[currentNavIndex],

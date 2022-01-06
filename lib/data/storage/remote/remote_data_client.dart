@@ -2,11 +2,12 @@ import 'package:dio/dio.dart';
 
 class RemoteDataClient {
   static const baseUrl = 'http://mark.bslmeiyu.com/api/';
+  static const baseImageUrl = 'http://mark.bslmeiyu.com/uploads';
 
   ///
   /// Add global headers here
   ///
-  static const _headers = {'': ''};
+  static const _headers = <String, dynamic>{};
 
   static BaseOptions get _options => BaseOptions(
         baseUrl: baseUrl,

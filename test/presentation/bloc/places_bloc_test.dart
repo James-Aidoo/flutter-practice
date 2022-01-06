@@ -19,7 +19,7 @@ void main() {
     setUp(() {
       repository = MockPlaceRepository();
       useCase = GetPlacesUseCase(repository);
-      placesBloc = PlacesBloc(getPlacesUseCase: useCase);
+      placesBloc = PlacesBloc(useCase);
     });
 
     test('Initial State is PlacesState.initial', () {
@@ -43,7 +43,7 @@ void main() {
         'emits [Loading, Error] when PlacesEvent.getPlaces() is added.',
         build: () {
           when(repository.getPlaces())
-              .thenAnswer((_) async => Left(ServerFailure()));
+              .thenAnswer((_) async => Left(ServerFailure('')));
           return placesBloc;
         },
         act: (bloc) => bloc.add(const GetPlacesEvent()),

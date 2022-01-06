@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_cubit_app/data/storage/remote/remote_data_client.dart';
+import 'package:flutter_cubit_app/domain/model/place.dart';
 import 'package:flutter_cubit_app/misc/colors.dart';
 import 'package:flutter_cubit_app/presentation/widget/app_button.dart';
 import 'package:flutter_cubit_app/presentation/widget/app_text_large.dart';
@@ -7,15 +9,22 @@ import 'package:flutter_cubit_app/presentation/widget/app_text_normal.dart';
 import 'package:flutter_cubit_app/presentation/widget/responsive_button.dart';
 
 class DetailPage extends StatefulWidget {
-  const DetailPage({Key? key}) : super(key: key);
+  final Place place;
+
+  const DetailPage({Key? key, required this.place}) : super(key: key);
 
   @override
   _DetailPageState createState() => _DetailPageState();
 }
 
 class _DetailPageState extends State<DetailPage> {
-  static const int _gottenStars = 4;
   int peopleSizeIndex = 0;
+
+  @override
+  void initState() {
+    peopleSizeIndex = widget.place.selectedPeople - 1;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,9 +39,10 @@ class _DetailPageState extends State<DetailPage> {
                 child: Container(
                   width: double.maxFinite,
                   height: 350,
-                  decoration: const BoxDecoration(
+                  decoration: BoxDecoration(
                     image: DecorationImage(
-                        image: AssetImage('images/mountain.jpeg'),
+                        image: NetworkImage(
+                            '${RemoteDataClient.baseImageUrl}/${widget.place.img}'),
                         fit: BoxFit.cover),
                   ),
                 ),
@@ -43,7 +53,9 @@ class _DetailPageState extends State<DetailPage> {
                   children: [
                     IconButton(
                       onPressed: () {},
-                      icon: const Icon(Icons.menu),
+                      icon: InkWell(
+                          onTap: () => Navigator.pop(context),
+                          child: const Icon(Icons.menu)),
                       color: Colors.white,
                     ),
                     IconButton(
@@ -74,12 +86,12 @@ class _DetailPageState extends State<DetailPage> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           AppTextLarge(
-                            text: 'Yosemite',
+                            text: widget.place.name,
                             color: Colors.black.withOpacity(0.8),
                             size: 26,
                           ),
-                          const AppTextLarge(
-                            text: '\$250',
+                          AppTextLarge(
+                            text: '\$${widget.place.price}',
                             color: AppColors.mainColor,
                             size: 26,
                           ),
@@ -87,15 +99,15 @@ class _DetailPageState extends State<DetailPage> {
                       ),
                       const SizedBox(height: 5),
                       Row(
-                        children: const [
-                          Icon(
+                        children: [
+                          const Icon(
                             Icons.location_on,
                             size: 16,
                             color: AppColors.mainColor,
                           ),
-                          SizedBox(width: 3),
+                          const SizedBox(width: 3),
                           AppTextNormal(
-                            text: 'USA, California',
+                            text: widget.place.location,
                             color: AppColors.textColor1,
                             size: 14,
                           ),
@@ -109,14 +121,15 @@ class _DetailPageState extends State<DetailPage> {
                               return Icon(
                                 Icons.star,
                                 size: 16,
-                                color: index < _gottenStars
+                                color: index < widget.place.stars
                                     ? AppColors.starColor
                                     : AppColors.textColor2,
                               );
                             }),
                           ),
                           const SizedBox(width: 5),
-                          const AppTextNormal(text: '(4.0)'),
+                          AppTextNormal(
+                              text: '(${widget.place.stars.toDouble()})'),
                         ],
                       ),
                       const SizedBox(height: 30),
@@ -134,7 +147,7 @@ class _DetailPageState extends State<DetailPage> {
                       const SizedBox(height: 10),
                       Wrap(
                         spacing: 5,
-                        children: List.generate(5, (index) {
+                        children: List.generate(widget.place.people, (index) {
                           return InkWell(
                             onTap: () {
                               setState(() {
@@ -164,9 +177,7 @@ class _DetailPageState extends State<DetailPage> {
                         size: 20,
                       ),
                       const SizedBox(height: 5),
-                      const AppTextNormal(
-                          text:
-                              'You must go for a travel. Travelling helps get rid of pressure. Go to the mountains to see nature'),
+                      AppTextNormal(text: widget.place.description),
                     ],
                   ),
                 ),
@@ -186,9 +197,11 @@ class _DetailPageState extends State<DetailPage> {
                       icon: Icons.favorite_border,
                     ),
                     SizedBox(width: 10),
-                    ResponsiveButton(
-                      hasText: true,
-                      text: 'Book Trip Now',
+                    Expanded(
+                      child: ResponsiveButton(
+                        hasText: true,
+                        text: 'Book Trip Now',
+                      ),
                     ),
                   ],
                 ),

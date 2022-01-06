@@ -10,6 +10,8 @@ class Place with _$Place {
     required String img,
     required int price,
     required int people,
+    // ignore: invalid_annotation_target
+    @JsonKey(name: 'selected_people') required int selectedPeople,
     required int stars,
     required String description,
     required String location,
