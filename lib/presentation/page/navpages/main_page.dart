@@ -16,13 +16,17 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-  static const pages = [HomePage(), BarItemPage(), SearchPage(), MyPage()];
-
   int currentNavIndex = 0;
 
   @override
   Widget build(BuildContext context) {
-    print(widget.places);
+    final pages = [
+      HomePage(places: widget.places),
+      const BarItemPage(),
+      const SearchPage(),
+      const MyPage()
+    ];
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: pages[currentNavIndex],
