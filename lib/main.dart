@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_cubit_app/injection_container.dart';
+import 'package:flutter_cubit_app/presentation/page/detail_page.dart';
 import 'package:flutter_cubit_app/presentation/page/navpages/main_page.dart';
 import 'package:flutter_cubit_app/presentation/page/welcome_page.dart';
 import 'package:flutter_cubit_app/presentation/utils/route_names.dart';
@@ -30,6 +31,12 @@ class MyApp extends StatelessWidget {
           return MaterialPageRoute(
               builder: (context) =>
                   MainPage(places: settings.arguments as List<Place>));
+        } else if (settings.name == RouteNames.detailPage) {
+          return MaterialPageRoute(
+            builder: (context) => DetailPage(
+              place: settings.arguments as Place,
+            ),
+          );
         }
       },
       debugShowCheckedModeBanner: false,
