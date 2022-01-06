@@ -75,6 +75,7 @@ class DataRepositoryImpl extends DataRepository {
       case DioErrorType.cancel:
         return 'Your request was cancelled';
       case DioErrorType.other:
+        return 'No Internet connection 😑';
       default:
         return dioError.error?.toString() ?? 'An error occured';
     }
