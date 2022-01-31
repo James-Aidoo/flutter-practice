@@ -51,7 +51,7 @@ class _HomePageState extends State<HomePage>
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => getIt<PlacesBloc>(),
+      create: (context) => sl<PlacesBloc>(),
       child: Scaffold(
         body: SafeArea(
           child: Padding(

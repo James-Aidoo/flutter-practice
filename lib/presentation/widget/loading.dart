@@ -12,7 +12,7 @@ class LoadingView extends StatelessWidget {
       {Key? key,
       this.color = AppColors.mainColor,
       this.text = 'Working. Please wait...',
-      this.animSize = 70})
+      this.animSize = 50})
       : super(key: key);
 
   @override

@@ -6,38 +6,41 @@ import 'package:flutter_cubit_app/data/storage/source/remote_data_source_impl.da
 import 'package:flutter_cubit_app/domain/repository/data_repository.dart';
 import 'package:flutter_cubit_app/domain/repository/place_repository.dart';
 import 'package:flutter_cubit_app/domain/storage/source/remote_data_source.dart';
+import 'package:flutter_cubit_app/domain/usecase/add_data_usecase.dart';
+import 'package:flutter_cubit_app/domain/usecase/get_data_usecase.dart';
 import 'package:flutter_cubit_app/domain/usecase/get_places_usecase.dart';
 import 'package:flutter_cubit_app/presentation/bloc/places_bloc.dart';
+import 'package:flutter_cubit_app/presentation/bloc/stream_test_bloc.dart';
 import 'package:get_it/get_it.dart';
+import 'package:streaming_shared_preferences/streaming_shared_preferences.dart';
 
-final getIt = GetIt.I;
+final sl = GetIt.I;
 
-void registerCompononents() {
+Future<void> registerCompononents() async {
   //! State Management (Bloc)
   // Note: ```getIt()``` is short for ```getIt.call()```
-  getIt.registerFactory(() => PlacesBloc(getIt()));
+  sl.registerFactory(() => PlacesBloc(sl()));
+  sl.registerFactory(() => StreamTestBloc(sl(), sl()));
 
   //! Usecase
-  getIt.registerLazySingleton(() => GetPlacesUseCase(getIt()));
+  sl.registerLazySingleton(() => GetPlacesUseCase(sl()));
+  sl.registerLazySingleton(() => GetDataUseCase(sl()));
+  sl.registerLazySingleton(() => AddDataUseCase(sl()));
 
   //! Repositories and Sources
   // Repository
-  getIt.registerLazySingleton<DataRepository>(
-    () => DataRepositoryImpl(getIt()),
-  );
-  getIt.registerLazySingleton<PlaceRepository>(
-    () => PlaceRepositoryImpl(getIt()),
-  );
+  sl.registerLazySingleton<DataRepository>(() => DataRepositoryImpl(sl()));
+  sl.registerLazySingleton<PlaceRepository>(() => PlaceRepositoryImpl(sl()));
 
   // Data sources
-  getIt.registerLazySingleton<RemoteDataSource>(
-    () => RemoteDataSourceImpl(getIt()),
-  );
+  sl.registerLazySingleton<RemoteDataSource>(
+      () => RemoteDataSourceImpl(sl(), sl()));
 
-  getIt.registerLazySingleton<RemoteDataService>(
-    () => RemoteDataService(getIt()),
-  );
+  sl.registerLazySingleton<RemoteDataService>(() => RemoteDataService(sl()));
 
   //! External libraries
-  getIt.registerLazySingleton(() => RemoteDataClient.dio);
+  sl.registerLazySingleton(() => RemoteDataClient.dio);
+
+  final _pref = await StreamingSharedPreferences.instance;
+  sl.registerLazySingleton(() => _pref);
 }

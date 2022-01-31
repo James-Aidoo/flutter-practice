@@ -43,6 +43,9 @@ dependencies:
   json_annotation: ^4.4.0
   flutter_bloc: ^8.0.1
   flutter_spinkit: ^5.1.0
+  rx_shared_preferences: ^2.3.0
+  shared_preferences: ^2.0.12
+  streaming_shared_preferences: ^2.0.0
 
 dev_dependencies:
   flutter_test:

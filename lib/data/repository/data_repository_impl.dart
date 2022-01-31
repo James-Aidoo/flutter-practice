@@ -19,6 +19,16 @@ class DataRepositoryImpl extends DataRepository {
     return _request(call: _remoteDataSource.getPlaces);
   }
 
+  @override
+  Stream<List<String>?> getData() {
+    return _remoteDataSource.getData();
+  }
+
+  @override
+  Future<Either<Failure, void>> addData(List<String> params) async {
+    return _request(call: _remoteDataSource.addData, param: params);
+  }
+
   Future<Either<Failure, Type>> _request<Param, Type>({
     required Future<Type> Function(Param) call,
     Param? param,

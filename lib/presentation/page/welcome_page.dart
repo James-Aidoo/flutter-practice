@@ -22,7 +22,7 @@ class WelcomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => getIt<PlacesBloc>(),
+      create: (context) => sl<PlacesBloc>(),
       child: Scaffold(
         body: BlocBuilder<PlacesBloc, PlacesState>(
           builder: (context, state) {
@@ -83,20 +83,14 @@ class WelcomePage extends StatelessWidget {
                                           context.showSnackBar(state.message);
                                         }
                                       },
-                                      child:
-                                          BlocBuilder<PlacesBloc, PlacesState>(
-                                        builder: (context, state) {
-                                          return GestureDetector(
-                                            onTap: () {
-                                              context.read<PlacesBloc>().add(
-                                                  const PlacesEvent
-                                                      .getPlaces());
-                                            },
-                                            child: const ResponsiveButton(
-                                              width: 100,
-                                            ),
-                                          );
+                                      child: GestureDetector(
+                                        onTap: () {
+                                          context.read<PlacesBloc>().add(
+                                              const PlacesEvent.getPlaces());
                                         },
+                                        child: const ResponsiveButton(
+                                          width: 100,
+                                        ),
                                       ),
                                     ),
                                   ],
@@ -125,7 +119,11 @@ class WelcomePage extends StatelessWidget {
                       }),
                 ),
                 if (state is Loading)
-                  const Positioned.fill(child: LoadingView()),
+                  const Positioned.fill(
+                      child: LoadingView(
+                    text:
+                        "Fetching a list of potential places for you to visit. Please wait...",
+                  )),
               ],
             );
           },

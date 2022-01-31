@@ -13,4 +13,14 @@ class PlaceRepositoryImpl extends PlaceRepository {
   Future<Either<Failure, List<Place>>> getPlaces() async {
     return _repository.getPlaces();
   }
+
+  @override
+  Stream<List<String>?> getData() {
+    return _repository.getData();
+  }
+
+  @override
+  Future<Either<Failure, void>> addData(List<String> params) async {
+    return _repository.addData(params);
+  }
 }
