@@ -7,9 +7,10 @@ import 'package:flutter_cubit_app/presentation/utils/route_names.dart';
 
 import 'domain/model/place.dart';
 
-void main() {
+void main() async {
   // Call DI init function to register components
-  registerCompononents();
+  WidgetsFlutterBinding.ensureInitialized();
+  await registerCompononents();
   // run app
   runApp(const MyApp());
 }

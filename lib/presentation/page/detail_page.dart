@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_cubit_app/data/storage/remote/remote_data_client.dart';
@@ -41,7 +42,7 @@ class _DetailPageState extends State<DetailPage> {
                   height: 350,
                   decoration: BoxDecoration(
                     image: DecorationImage(
-                        image: NetworkImage(
+                        image: CachedNetworkImageProvider(
                             '${RemoteDataClient.baseImageUrl}/${widget.place.img}'),
                         fit: BoxFit.cover),
                   ),

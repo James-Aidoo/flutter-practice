@@ -18,7 +18,6 @@ final sl = GetIt.I;
 
 Future<void> registerCompononents() async {
   //! State Management (Bloc)
-  // Note: ```getIt()``` is short for ```getIt.call()```
   sl.registerFactory(() => PlacesBloc(sl()));
   sl.registerFactory(() => StreamTestBloc(sl(), sl()));
 
