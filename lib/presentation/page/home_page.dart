@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_cubit_app/data/storage/remote/remote_data_client.dart';
@@ -117,7 +118,7 @@ class _HomePageState extends State<HomePage>
                               borderRadius: BorderRadius.circular(12),
                               color: Colors.white,
                               image: DecorationImage(
-                                image: NetworkImage(
+                                image: CachedNetworkImageProvider(
                                   '${RemoteDataClient.baseImageUrl}/${widget.places[index].img}',
                                   scale: 1.0,
                                 ),

@@ -11,7 +11,7 @@ class RemoteDataClient {
 
   static BaseOptions get _options => BaseOptions(
         baseUrl: baseUrl,
-        connectTimeout: 30000,
+        connectTimeout: 15000,
         followRedirects: true,
         headers: _headers,
       );
